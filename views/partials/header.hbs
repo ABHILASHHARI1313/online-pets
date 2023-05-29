@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <p class="mb-0 phone pl-md-2">
+                        <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
+                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> miou@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-md-end">
+                    <div class="social-media">
+                        <p class="mb-0 d-flex">
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>Miou</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {{#if home}} active {{/if}}"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item {{#if about}} active {{/if}}"><a href="/about" class="nav-link">About</a></li>
+                    {{!-- <li class="nav-item {{#if vet}} active {{/if}}" ><a href="vet.html" class="nav-link">Veterinarian</a></li> --}}
+                    {{!-- <li class="nav-item {{#if category}} active {{/if}}"><a href="services.html" class="nav-link">Categories</a></li> --}}
+                    <li class="nav-item {{#if gallery}} active {{/if}}"><a href="/gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item {{#if sell}} active {{/if}}"><a href="/upload" class="nav-link">Sell</a></li>
+                    {{!-- <li class="nav-item {{#if pricing}} active {{/if}}"><a href="pricing.html" class="nav-link">Pricing</a></li> --}}
+                    <li class="nav-item {{#if contact}} active {{/if}}" ><a href="/contact" class="nav-link">Contact</a></li>
+                    {{#unless name}}
+                    <li class="nav-item {{#if signin}} active {{/if}}"><a href="/signin" class="nav-link">Sign In</a></li>
+                    {{/unless}}
+                    {{#if name}}
+                    <li class="nav-item"><a href="/" class="nav-link">{{name}}</a></li>
+                    {{/if}}
+                    {{#if name}}
+                    <li class="nav-item"><a href="/logout" class="nav-link">logout</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+</body>
+
+
+
+</html>

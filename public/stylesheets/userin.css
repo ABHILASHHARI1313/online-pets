@@ -1,0 +1,62 @@
+.one{
+    margin-top:20px;
+    margin-left: 400px;
+}
+.one input{
+    margin-top: 20px;
+    margin-left: 100px;
+}
+.two{
+    margin-top:0px;
+    margin-left: 400px;
+}
+.two input{
+    margin-top: 100px;
+    margin-left: 65px;
+}
+.three{
+    margin-top:0px;
+    margin-left: 400px;
+}
+.three input{
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.four {
+    margin-top:0px;
+    margin-left: 400px;
+}
+.four input{
+    margin-top: 100px;
+    margin-left: 115px;
+}
+.five{
+    margin-top:0px;
+    margin-left: 400px;
+}
+.five input{
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.six{
+    margin-top:0px;
+    margin-left: 400px;
+}
+.six input{
+    margin-top: 100px;
+    margin-left: 100px;
+}
+label{
+    font-size: 25px;
+    font-weight: 400px;
+    font: grey;
+}
+input{
+    border: 2px;
+    border:1px solid black:
+}
+button {
+    margin-top:0px;
+    margin-left: 400px;
+    border: none;
+}

@@ -8,8 +8,15 @@ const loginModel = mongoose.model('logininfo')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index');
-}); 
+  console.log(req.query.name)
+  console.log(req.session)
+  if (req.session.name) {
+    res.render('index', { name: req.session.name });
+
+  } else {
+    res.render('index')
+  }
+});
 
 
 router.get('/about', function (req, res, next) {
@@ -17,9 +24,30 @@ router.get('/about', function (req, res, next) {
 });
 
 
-router.get('/signin', function (req, res, next) {
-  res.render('signin');
+router.get('/contact', function (req, res, next) {
+  res.render('contact');
 });
+
+router.get('/gallery', function (req, res, next) {
+  res.render('gallery');
+});
+
+
+router.get('/upload', function (req, res, next) {
+  res.render('userin');
+});
+
+
+
+
+router.get('/signin', function (req, res, next) {
+  res.render('login');
+});
+
+
+router.get('/list', (req, res) => {
+  res.render('list')
+})
 
 router.get('/signup', function (req, res, next) {
   res.render('signup');
@@ -29,45 +57,54 @@ router.post('/signup', async (req, res) => {
   console.log("signup called")
   let userExist = await loginModel.findOne({ email: req.body.email })
   if (userExist) {
-    res.render('signup', { emailErr: 'Email already taken' });
+    res.send({ message: "email already exist" });
+    console.log("email already exists")
   } else {
     const newModel = new loginModel()
     newModel.name = req.body.name
     newModel.email = req.body.email
     newModel.password = req.body.password
-    try {
-      await newModel.save().then((response) => {
-        console.log("login info inserted", response)
-        res.render('signin');
-      })
-    } catch (error) {
-      console.log('error in inserting login info', error)
-    }
+    await newModel.save().then((response) => {
+      console.log("login info inserted")
+      res.send({ message: "user created" })
+
+    })
+
+
   }
-  console.log(req.body)
 
 })
 
 
 router.post('/signin', async (req, res) => {
   console.log("sign in api called")
-  console.log(req.body)
-  let userExist = await loginModel.findOne({ name: req.body.name })
+  let userExist = await loginModel.findOne({ email: req.body.email })
   if (userExist) {
-    console.log("User exist")
     if (userExist.password == req.body.password) {
-      req.session.name=req.body.name
-      req.session.userID=userExist._id
-      res.render('index',{name:req.body.name});
-     console.log("logged in")
+      req.session.name = userExist.name
+      req.session.userID = userExist._id
+      res.send({ message: "user loggedin", name: userExist.name })
+      console.log("logged in")
     } else {
-      res.render('signin',{ passErr: "password error" })
-      console.log("pass err")
-    }   
+      res.send({ message: "password error" })
+      console.log("password error")
+    }
   } else {
-    res.render('signin',{nameErr:'username not registerd'});
-    console.log("user not registerd")
+    res.send({ message: "email not registerd" })
+    console.log("email not registerd")
   }
+  console.log(req.session)
+})
+
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.send({ message: "error in logout" })
+    }
+    else {
+      res.render('index')
+    }
+  })
 })
 
 

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+						initial-scale=1.0">
+    <title>Miou</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="stylesheets/animatstylesheet">
+
+    <link rel="stylesheet" href="stylesheets/owl.carousel.min.css">
+    <link rel="stylesheet" href="stylesheets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="stylesheets/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="stylesheets/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="stylesheets/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="stylesheets/flaticon.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <link rel="stylesheet" href="stylesheets/login.css">
+</head>
+
+<body>
+
+
+
+    {{> header signin=true }}
+
+
+    <header>
+        <h1 class="heading">Miou</h1>
+    </header>
+
+    <!-- container div -->
+    <div class="logincontainer">
+
+        <!-- upper button section to select
+			the login or signup form -->
+        <div class="slider"></div>
+        <div class="btn">
+            <button class="login">Login</button>
+            <button class="signup">Signup</button>
+        </div>
+
+        <!-- Form section that contains the
+			login and the signup form -->
+        <div class="form-section">
+
+            <!-- login form -->
+            <form id="signinform">
+                <div class="login-box">
+                    <div>
+                        <input type="email" name="email" class="email ele" id="email" placeholder="youremail@email.com">
+                    </div>
+                    <div>
+                        <input type="password" name="password" class="password ele" id="password"
+                            placeholder="password">
+                    </div>
+                    <button class="clkbtn"> Login </button>
+                </div>
+
+            </form>
+            <!-- signup form -->
+            <form id="signupform">
+                <div class="signup-box">
+                    <div>
+                        <input type="text" class="name ele" placeholder="Enter your name" name="name" id="name"
+                            required>
+                    </div>
+                    <div>
+                        <input type="email" class="email ele" placeholder="youremail@email.com" name="email"
+                            id="emailUp" required>
+                    </div>
+                    <div>
+                        <input type="password" class="password ele" placeholder="password" name="password" id="passUp"
+                            required>
+                    </div>
+                    <div>
+                        <input type="password" class="password ele" placeholder="Confirm password" name="confpassword"
+                            id="confirm" required>
+                    </div>
+                    <button class="clkbtn" type="submit">Signup </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Petsitting</h2>
+					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+					<ul class="ftco-footer-social p-0">
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Twitter"><span class="fa fa-twitter"></span></a></li>
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Facebook"><span class="fa fa-facebook"></span></a></li>
+						<li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+								title="Instagram"><span class="fa fa-instagram"></span></a></li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Latest News</h2>
+					<div class="block-21 mb-4 d-flex">
+						<a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
+						<div class="text">
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+							<div class="meta">
+								<div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
+								<div><a href="#"><span class="icon-person"></span> Admin</a></div>
+								<div><a href="#"><span class="icon-chat"></span> 19</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="block-21 mb-4 d-flex">
+						<a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
+						<div class="text">
+							<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+							<div class="meta">
+								<div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
+								<div><a href="#"><span class="icon-person"></span> Admin</a></div>
+								<div><a href="#"><span class="icon-chat"></span> 19</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+					<h2 class="footer-heading">Quick Links</h2>
+					<ul class="list-unstyled">
+						<li><a href="#" class="py-2 d-block">Home</a></li>
+						<li><a href="#" class="py-2 d-block">About</a></li>
+						<li><a href="#" class="py-2 d-block">Services</a></li>
+						<li><a href="#" class="py-2 d-block">Works</a></li>
+						<li><a href="#" class="py-2 d-block">Blog</a></li>
+						<li><a href="#" class="py-2 d-block">Contact</a></li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+					<h2 class="footer-heading">Have a Questions?</h2>
+					<div class="block-23 mb-3">
+						<ul>
+							<li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San
+									Francisco, California, USA</span></li>
+							<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929
+										210</span></a></li>
+							<li><a href="#"><span class="icon fa fa-paper-plane"></span><span
+										class="text">info@yourdomain.com</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-md-12 text-center">
+
+					<p class="copyright">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+						is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+							target="_blank">Colorlib.com</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+    <script>
+
+        const base = "http://localhost:3000"
+
+
+        let signup = document.querySelector(".signup");
+        let login = document.querySelector(".login");
+        let slider = document.querySelector(".slider");
+        let formSection = document.querySelector(".form-section");
+
+        signup.addEventListener("click", () => {
+            slider.classList.add("moveslider");
+            formSection.classList.add("form-section-move");
+        });
+
+        login.addEventListener("click", () => {
+            slider.classList.remove("moveslider");
+            formSection.classList.remove("form-section-move");
+        });
+
+
+        const signupform = document.getElementById("signupform")
+        signupform.addEventListener('submit', handleSignUp)
+
+        async function handleSignUp(e) {
+            e.preventDefault()
+            clearErrorMessages()
+            const name = document.getElementById('name')
+            const email = document.getElementById('emailUp')
+            const password = document.getElementById('passUp')
+            const confirmPass = document.getElementById('confirm')
+            if (name.value.length < 2) {
+                displayErrorMessage(name, "Please enter a valid name")
+                return
+            }
+
+            if (!String(email.value)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )) {
+                displayErrorMessage(email, "Please enter a valid email")
+                return
+            }
+
+            if (password.value.length < 2) {
+                displayErrorMessage(password, "Password must be atleast 6 characters long")
+                return
+            }
+
+            if (password.value !== confirmPass.value) {
+                displayErrorMessage(confirmPass, "Passwords do not match")
+                return
+            }
+
+
+            const result = await (await fetch(base + '/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    email: email.value,
+                    password: password.value
+                })
+            })).json()
+
+
+            if (result.message === "user created") {
+                window.location.href = "/signin"
+            } else if (result.message === "email already exist") {
+                displayErrorMessage(email, "Email already exists")
+            }
+
+        }
+
+
+        const signinform = document.getElementById('signinform')
+        signinform.addEventListener('submit', handleSignIn)
+
+
+        async function handleSignIn(e) {
+            e.preventDefault()
+            clearErrorMessages()
+            const email = document.getElementById('email')
+            const password = document.getElementById('password')
+
+            if (!String(email.value)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )) {
+                displayErrorMessage(email, "Please enter a valid email")
+                return
+            }
+
+            if (password.value.length < 2) {
+                displayErrorMessage(password, "Password must be atleast 6 characters long")
+                return
+            }
+
+            const result = await (await fetch(base + '/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email.value,
+                    password: password.value
+                })
+            })).json()
+
+            console.log("result is", result)
+
+
+            if (result.message === "user loggedin") {
+                window.location.href = "/"
+            } else if (result.message === "password error") {
+                displayErrorMessage(password, "Password is incorrect")
+            } else if (result.message === "email not registerd") {
+                displayErrorMessage(email, "Email is not registered")
+            }
+
+
+        }
+
+        function displayErrorMessage(inputElement, message) {
+            const parentElement = inputElement.parentElement
+
+            inputElement.classList.add("errorinput")
+
+            const errorElement = document.createElement('div')
+            errorElement.className = 'errormessage'
+            errorElement.innerHTML = message
+
+            parentElement.appendChild(errorElement)
+
+        }
+
+        function clearErrorMessages() {
+            const errorElements = document.querySelectorAll('.errormessage')
+            errorElements.forEach(errorElement => {
+                errorElement.remove()
+            })
+
+            const errorInputs = document.querySelectorAll('input')
+            errorInputs.forEach((input) => {
+                input.classList.remove('errorinput')
+            })
+
+        }
+    </script>
+
+    <script src="javascripts/jquery.min.js"></script>
+	<script src="javascripts/jquery-migrate-3.0.1.min.js"></script>
+	<script src="javascripts/popper.min.js"></script>
+	<script src="javascripts/bootstrap.min.js"></script>
+	<script src="javascripts/jquery.easing.1.3.js"></script>
+	<script src="javascripts/jquery.waypoints.min.js"></script>
+	<script src="javascripts/jquery.stellar.min.js"></script>
+	<script src="javascripts/jquery.animateNumber.min.js"></script>
+	<script src="javascripts/bootstrap-datepicker.js"></script>
+	<script src="javascripts/jquery.timepicker.min.js"></script>
+	<script src="javascripts/owl.carousel.min.js"></script>
+	<script src="javascripts/jquery.magnific-popup.min.js"></script>
+	<script src="javascripts/scrollax.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="javascripts/google-map.js"></script>
+	<script src="javascripts/main.js"></script>
+
+</body>
+
+</html>
