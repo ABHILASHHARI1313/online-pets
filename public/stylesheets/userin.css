@@ -33,6 +33,28 @@
 .five{
     margin-top:0px;
     margin-left: 400px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.five textarea{
+    resize: none;
+    height: 132px;
+    width: 75%;
+    padding-left: 10px;
+    padding: 10px 0px;
+    padding-left: 10px;
+}
+
+.six textarea{
+    resize: none;
+    height: 86px;
+    width: 75%;
+    padding-left: 10px;
+    padding: 10px 0px;
+    padding-left: 10px;
 }
 .five input{
     margin-top: 100px;
@@ -41,6 +63,10 @@
 .six{
     margin-top:0px;
     margin-left: 400px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
 }
 .six input{
     margin-top: 100px;

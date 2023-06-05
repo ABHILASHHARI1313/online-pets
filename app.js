@@ -12,7 +12,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var fileupload = require('express-fileupload') 
+app.use(fileupload())
+
 const {engine} = require('express-handlebars')
+
+
 
 app.engine('hbs', engine({
   extname: 'hbs',

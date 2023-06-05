@@ -1,0 +1,30 @@
+.detailscontainer{
+    width: 80%;
+    margin: auto;
+}
+
+img{
+    width: 300px;
+    height: 400px;
+    object-fit: contain;
+}
+
+.imagescontainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #e9e9e9ab;
+    padding: 25px 0px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    row-gap: 20px;
+
+}
+
+.pricelocation{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}

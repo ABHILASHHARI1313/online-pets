@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="stylesheets/details.css">
   <link rel="stylesheet" href="stylesheets/userin.css">
+
+
   <style>
     /* Style The Dropdown Button */
     .dropbtn {
@@ -104,12 +106,24 @@
       color: white;
     }
 
-    #form1{
+    #form1 {
       margin-bottom: 100px;
     }
 
-    .submit{
+    .submit {
       margin-top: 50px;
+    }
+
+    select {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin: 10px;
+      font-size: 16px;
+      width: 200px;
+      margin-left: 60px;
     }
   </style>
 </head>
@@ -117,43 +131,59 @@
 <body>
   {{> header sell=true}}
 
-  <form action="list.html" id="form1">
+  <form action="uploadpet" id="form1" method="POST" enctype="multipart/form-data">
     <div class="hi">
       <div class="one">
         <label for="name" type="text">Name :</label>
-        <input type="text" id="name" placeholder="Enter the name" autofocus>
+        <input type="text" id="name" placeholder="Enter the name" name="name" autofocus required>
       </div>
       <div class="two">
         <label for="category" type="text">Category :</label>
-        <input type="text" id="name" placeholder="Enter the category">
+        <select name="category" id="" required>
+          <option value="" disabled selected hidden>Choose</option>
+          <option value="cat">Cats</option>
+          <option value="dog">Dogs</option>
+          <option value="cow">Cow</option>
+          <option value="goat">Goat</option>
+          <option value="birds">Birds</option>
+        </select>
       </div>
       <div class="three">
         <label for="location" type="text">Image1 :</label>
-        <input type="file" id="image">
+        <input type="file" id="image" name="image1" required>
       </div>
       <div class="three">
         <label for="location" type="text">Image2 :</label>
-        <input type="file" id="image">
+        <input type="file" id="image" name="image2" required>
       </div>
       <div class="three">
         <label for="location" type="text">Image3 :</label>
-        <input type="file" id="image">
+        <input type="file" id="image" name="image3" required>
       </div>
       <div class="four">
         <label for="price" type="text">Price :</label>
-        <input type="text" id="name" placeholder="Enter the price">
+        <input type="number" id="name" placeholder="Enter the price" name="price" required>
       </div>
+       <div class="four">
+        <label for="price" type="text">Phone :</label>
+        <input type="tel" id="name" placeholder="Enter  phone number" name="phone" required>
+      </div>
+       <div class="four">
+        <label for="address" type="text">place :</label>
+        <input type="text" id="name" placeholder="Enter your place" name="location" required>
+      </div>
+      <br>
+      <br>
       <div class="five">
         <label for="description" type="text">Description :</label>
+   
+        <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter the description here" required></textarea>
       </div>
-      <div class="five">
-        <textarea name="description" id="description" cols="30" rows="10">Enter the description here!</textarea>
-      </div>
+      <br><br>
       <div class="six">
-        <label for="location" type="text">Location :</label>
-      </div>
-      <div class="six">
-        <textarea name="location" id="location" cols="30" rows="10">Enter the location here!</textarea>
+        <label for="location" type="text">Address :</label>
+      
+        <textarea name="address" id="location" cols="30" rows="10" placeholder="Enter the Address here!" required></textarea>
       </div>
       <button type="submit" form="form1" value="Submit" class="submit">Submit</button>
     </div>
@@ -242,5 +272,6 @@
   </footer>
 
 </body>
+
 
 </html>
