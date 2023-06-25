@@ -65,10 +65,10 @@ router.get('/list', async (req, res) => {
   if (req.query.category == undefined) {
     console.log("enterd into undefined")
     // console.log(allData)
-    data = await petModel.find({ category: 'cat' })
+    data = await petModel.find({ category: 'cat' }).lean()
   } else {
     console.log("specific category")
-    data = await petModel.find({ category: req.query.category })
+    data = await petModel.find({ category: req.query.category }).lean()
     console.log(typeof(data))
   }
 

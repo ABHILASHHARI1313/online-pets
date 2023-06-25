@@ -198,15 +198,8 @@
 				<h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
 
 				<div class="cardcontainer">
-					<p>{{data}}</p>
-					{{#each data}}
-					<p>{{this}}</p>
-					<p>name is {{this.name}}</p>
-					{{/each}}
-
-					{{log data}}
 				
-					{{# each data}}
+					{{#each data}}
 					<div class="col-lg-4 col-md-12 mb-4">
 						<a href="details?dataId={{this.name}}">
 								<div class="card">
