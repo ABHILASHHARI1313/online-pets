@@ -141,6 +141,24 @@
 			height: 300px;
 			object-fit: contain;
 		}
+
+		.rating {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 65px;
+			margin: auto;
+		}
+
+		.value {
+			margin: 0;
+			color: #ffc107;
+			font-weight: bold;
+			font-size: 18px;
+			margin-top: 2px;
+		}
+
+	
 	</style>
 </head>
 
@@ -198,39 +216,38 @@
 				<h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
 
 				<div class="cardcontainer">
-					<p>{{data}}</p>
 					{{#each data}}
-					<p>{{this}}</p>
-					<p>name is {{this.name}}</p>
-					{{/each}}
-
-					{{log data}}
-				
-					{{# each data}}
 					<div class="col-lg-4 col-md-12 mb-4">
-						<a href="details?dataId={{this.name}}">
-								<div class="card">
-							<div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-								data-mdb-ripple-color="light">
-								<img src="/petimages/{{this.image1}}" class="w-100" />
-								<a href="#!">
+						<a href="details?dataID={{this._id}}">
+							<div class="card">
+								<div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+									data-mdb-ripple-color="light">
+									<img src="/petimages/{{this.image1}}" class="w-100" />
+									<a href="#!">
 
-									<div class="hover-overlay">
-										<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+										<div class="hover-overlay">
+											<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="card-body">
+									<a href="" class="text-reset">
+										<h5 class="card-title mb-3">{{this.name}}</h5>
+
+									</a>
+									<a href="" class="text-reset">
+										<p>Category : <b>{{this.category}}</b></p>
+									</a>
+									<h6 class="mb-3">Rs {{this.price}}</h6>
+
+									<div class="rating">
+
+										<img src="/images/star.png" alt="">
+										<p class="value">{{this.rating}}</p>
 									</div>
-								</a>
+								</div>
 							</div>
-							<div class="card-body">
-								<a href="" class="text-reset">
-									<h5 class="card-title mb-3">{{this.name}}</h5>
-
-								</a>
-								<a href="" class="text-reset">
-									<p>Category : <b>{{this.category}}</b></p>
-								</a>
-								<h6 class="mb-3">Rs {{this.price}}</h6>
-							</div>
-						</div>
 						</a>
 					</div>
 					{{/each}}
@@ -326,10 +343,10 @@
 		</div>
 	</footer>
 
-	
-	
-		
-	
+
+
+
+
 
 
 

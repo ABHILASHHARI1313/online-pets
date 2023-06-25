@@ -23,20 +23,39 @@
     <link rel="stylesheet" href="stylesheets/flaticon.css">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+
+        span {
+            scale: 1.7;
+        }
+
+        .ratings {
+            display: flex;
+            width: 143px;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 
 <body>
     {{> header}}
+    {{!-- {{#each data}} --}}
     <div class="detailscontainer">
         <br>
         <div class="name">
+
             <h2>{{data.name}}</h2>
         </div>
         <br>
         <br>
         <div class="imagescontainer">
             <img src="/petimages/{{data.image1}}" alt="">
-            <img src="/petimages/{{data.image2}}"alt="">
+            <img src="/petimages/{{data.image2}}" alt="">
             <img src="/petimages/{{data.image3}}" alt="">
         </div>
         <br>
@@ -69,8 +88,25 @@
         </div>
         <br>
         <br>
+        {{#if rated}}
+        <p style="font-weight: normal;">Thanks for your feedback 😊</p>
+        {{else}}
+        <p style="font-weight: bold;">Your opinion matters 😊</p>
+        {{/if}}
+
+        <div class="ratings">
+            <span class="fa fa-star" id="star1"></span>
+            <span class="fa fa-star" id="star2"></span>
+            <span class="fa fa-star" id="star3"></span>
+            <span class="fa fa-star" id="star4"></span>
+            <span class="fa fa-star" id="star5"></span>
+        </div>
+
+        <br>
+        <br>
 
     </div>
+    {{!-- {{/each}} --}}
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -153,5 +189,118 @@
         </div>
     </footer>
 </body>
+
+<script>
+    const star1 = document.getElementById('star1')
+    const star2 = document.getElementById('star2')
+    const star3 = document.getElementById('star3')
+    const star4 = document.getElementById('star4')
+    const star5 = document.getElementById('star5')
+
+    async function rate(id, val) {
+        fetch('http://localhost:3000/ratepet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+
+            },
+            body: JSON.stringify({
+                petID: id,
+                rate: val
+            })
+        }).then(function (response) {
+            window.location.reload();
+        })
+    }
+
+
+
+    if (!{{ rated }}) {
+        star1.addEventListener('click', function () {
+            showStar(1);
+            rate("{{petID}}", 1)
+
+
+        });
+
+        star2.addEventListener('click', function () {
+            showStar(1);
+            showStar(2);
+            rate("{{petID}}", 2)
+        });
+
+        star3.addEventListener('click', function () {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+            rate("{{petID}}", 3)
+
+        });
+
+        star4.addEventListener('click', function () {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+            showStar(4);
+            rate("{{petID}}", 4)
+
+        });
+
+        star5.addEventListener('click', function () {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+            showStar(4);
+            showStar(5);
+            rate("{{petID}}", 5)
+
+        });
+    } else if ({{ rated }}) {
+        showrating({{ rate }})
+    }
+
+    function showrating(rate) {
+        if (rate == 1) {
+            showStar(1);
+        } else if (rate == 2) {
+            showStar(1);
+            showStar(2);
+        } else if (rate == 3) {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+        } else if (rate == 4) {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+            showStar(4);
+        } else if (rate == 5) {
+            showStar(1);
+            showStar(2);
+            showStar(3);
+            showStar(4);
+            showStar(5);
+        }
+    }
+
+
+
+
+    function showStar(rating) {
+        if (rating == 1) {
+            star1.classList.add('checked')
+        } else if (rating == 2) {
+            star2.classList.add('checked')
+        } else if (rating == 3) {
+            star3.classList.add('checked')
+        } else if (rating == 4) {
+            star4.classList.add('checked')
+        } else if (rating == 5) {
+            star5.classList.add('checked')
+        }
+    }
+
+
+</script>
 
 </html>

@@ -14,6 +14,14 @@ const petSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    location: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
     image1: {
         type: String,
         required: true
@@ -38,8 +46,11 @@ const petSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    ratingValues:{
+        type:Array
+    },
     rating:{
-        type:Array,
+        type: Number,
     }
 })
 

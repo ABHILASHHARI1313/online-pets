@@ -57,7 +57,7 @@ router.get('/signin', function (req, res, next) {
 
 router.get('/list', async (req, res) => {
 
- // console.log(allData)
+  // console.log(allData)
   //console.log(allData)
   // console.log(req.query.category)
   var filterdData = []
@@ -65,65 +65,92 @@ router.get('/list', async (req, res) => {
   if (req.query.category == undefined) {
     console.log("enterd into undefined")
     // console.log(allData)
-    data = await petModel.find({ category: 'cat' })
+    data = await petModel.find({ category: 'cat' }).lean()
   } else {
     console.log("specific category")
-    data = await petModel.find({ category: req.query.category })
-    console.log(typeof(data))
+    data = await petModel.find({ category: req.query.category }).lean()
+    console.log(typeof (data))
   }
 
- // console.log(data)
+  // console.log(data)
   const object = {}
   object[req.query.category ? req.query.category : 'cat'] = true
+  object.data = data
+  object.name = req.session.name
 
   object.name = req.session.name
-  //console.log(object)
 
-  const filterdData1 = [{
-    name: 'Prescott Strong',
-    userID: '64473d18d63836014ec02e44',
-    category: 'cat',
-    image1: '64473d18d63836014ec02e441687674076645(1).jpg',
-    image2: '64473d18d63836014ec02e441687674076645(2).jpg',
-    image3: '64473d18d63836014ec02e441687674076645(3).jpg',
-    price: 418,
-    phone: '1234567890',
-    description: 'Irure dolores elit ',
-    rating: [],
-    __v: 0
-  },
-  {
-    name: 'pussy cat',
-    userID: '64473d18d63836014ec02e44',
-    category: 'cat',
-    image1: '64473d18d63836014ec02e441687674076645(1).jpg',
-    image2: '64473d18d63836014ec02e441687674076645(2).jpg',
-    image3: '64473d18d63836014ec02e441687674076645(3).jpg',
-    price: 418,
-    phone: '1234567890',
-    description: 'Irure dolores elit ',
-    rating: [],
-    __v: 0
-  }]
-
-  //console.log(filterdData)
-  //console.log(filterdData1)
-
-  res.render('list', { cat: true, data, name: req.session.name })
+  res.render('list', object)
 })
 
 
 
-router.get('/details', async (req, res) => {
-  const dataId = req.query.dataId
-  const allData = await (await fetch("https://node-js-restapi-pet.onrender.com/",)).json()
-  console.log(req.query.dataId)
+router.get('/details',verifylogin, async (req, res) => {
+  var data;
 
-  const filterdData = allData.filter((obj => { return obj.dataId == dataId }))
-  console.log(filterdData[0])
+  try {
+    data = await petModel.findOne({ _id: req.query.dataID }).lean()
+    //console.log(data)
+
+  } catch (error) {
+    console.log("error in retreving pet data", error)
+  }
+
+  var rated=false
+  var rate;
+  const ratingArray = data.ratingValues
+
+  ratingArray.map((obj)=>{
+    if(obj.userID==req.session.userID){
+      rated = true
+      rate = obj.rate
+      return
+    }
+  })
+
+  
+
+  res.render('details', { data, name: req.session.name, petID: data._id, rated, rate })
+
+})
+
+router.post('/ratepet', async (req, res) => {
+  console.log("ratepet called")
 
 
-  res.render('details', { data: allData, name: req.session.name })
+  const Array = (await petModel.findOne({_id:req.body.petID})).ratingValues
+  const noOfusers = Array.length 
+  console.log("noOfusers is",noOfusers)
+
+  var sum = 0
+  for(var i=0;i<Array.length ;i++){
+    sum +=parseInt(Array[i].rate)
+  }
+
+  console.log("sum is",sum)
+
+
+  const newRating = (sum + parseInt(req.body.rate)) / (noOfusers + 1 )
+  console.log("newRating is",newRating)
+
+  try {
+    await petModel.updateOne({ _id: req.body.petID }, {
+      $push: {
+        ratingValues: {
+          userID:req.session.userID,
+          name: req.session.name,
+          rate: parseInt(req.body.rate),
+        }
+      },
+      $set:{
+        rating:newRating
+      }
+    })
+  } catch (error) {
+    console.log("error in rating",error)
+  }
+  res.send("rated")
+
 
 })
 
