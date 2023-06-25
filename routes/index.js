@@ -4,7 +4,9 @@ var router = express.Router();
 
 require('../schemas/loginschema')
 
-const loginModel = mongoose.model('logininfo')
+require('../schemas/petSchema')
+
+const petModel = mongoose.model('petdetails')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -53,147 +55,84 @@ router.get('/signin', function (req, res, next) {
 });
 
 
-router.get('/list', verifylogin, async (req, res) => {
-  const allData = await (await fetch("https://node-js-restapi-pet.onrender.com/",)).json()
-  console.log(req.query.category)
+router.get('/list', async (req, res) => {
+
+ // console.log(allData)
+  //console.log(allData)
+  // console.log(req.query.category)
   var filterdData = []
+  var data;
   if (req.query.category == undefined) {
     console.log("enterd into undefined")
-    console.log(allData)
-    filterdData = allData.filter((obj => { return obj.category == 'cat' }))
+    // console.log(allData)
+    data = await petModel.find({ category: 'cat' })
   } else {
-    filterdData = allData.filter((obj => { return obj.category == req.query.category }))
+    console.log("specific category")
+    data = await petModel.find({ category: req.query.category })
+    console.log(typeof(data))
   }
+
+ // console.log(data)
   const object = {}
   object[req.query.category ? req.query.category : 'cat'] = true
-  object.data = filterdData
+
   object.name = req.session.name
-  console.log(object)
+  //console.log(object)
 
-  res.render('list', object)
+  const filterdData1 = [{
+    name: 'Prescott Strong',
+    userID: '64473d18d63836014ec02e44',
+    category: 'cat',
+    image1: '64473d18d63836014ec02e441687674076645(1).jpg',
+    image2: '64473d18d63836014ec02e441687674076645(2).jpg',
+    image3: '64473d18d63836014ec02e441687674076645(3).jpg',
+    price: 418,
+    phone: '1234567890',
+    description: 'Irure dolores elit ',
+    rating: [],
+    __v: 0
+  },
+  {
+    name: 'pussy cat',
+    userID: '64473d18d63836014ec02e44',
+    category: 'cat',
+    image1: '64473d18d63836014ec02e441687674076645(1).jpg',
+    image2: '64473d18d63836014ec02e441687674076645(2).jpg',
+    image3: '64473d18d63836014ec02e441687674076645(3).jpg',
+    price: 418,
+    phone: '1234567890',
+    description: 'Irure dolores elit ',
+    rating: [],
+    __v: 0
+  }]
+
+  //console.log(filterdData)
+  //console.log(filterdData1)
+
+  res.render('list', { cat: true, data, name: req.session.name })
 })
 
 
 
-router.get('/signup', function (req, res, next) {
-  res.render('signup');
-});
-
-router.post('/signup', async (req, res) => {
-  console.log("signup called")
-  let userExist = await loginModel.findOne({ email: req.body.email })
-  if (userExist) {
-    res.send({ message: "email already exist" });
-    console.log("email already exists")
-  } else {
-    const newModel = new loginModel()
-    newModel.name = req.body.name
-    newModel.email = req.body.email
-    newModel.password = req.body.password
-    await newModel.save().then((response) => {
-      console.log("login info inserted")
-      res.send({ message: "user created" })
-
-    })
-  }
-})
-
-
-router.post('/signin', async (req, res) => {
-  console.log("sign in api called")
-  let userExist = await loginModel.findOne({ email: req.body.email })
-  if (userExist) {
-    if (userExist.password == req.body.password) {
-      req.session.name = userExist.name
-      req.session.userID = userExist._id
-      res.send({ message: "user loggedin", name: userExist.name })
-      console.log("logged in")
-    } else {
-      res.send({ message: "password error" })
-      console.log("password error")
-    }
-  } else {
-    res.send({ message: "email not registerd" })
-    console.log("email not registerd")
-  }
-  console.log(req.session)
-})
-
-router.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      res.send({ message: "error in logout" })
-    }
-    else {
-      res.render('index')
-    }
-  })
-})
-
-
-router.post('/uploadpet', async (req, res) => {
-  console.log("upload pet api called")
-
-  const controller = new AbortController();
-
-
-
-  const image1 = req.files.image1
-  const image2 = req.files.image2
-  const image3 = req.files.image3
-
-  const timestamp = Date.now();
-
-  image1.mv('./public/petimages/' + req.session.userID + timestamp + "(1).jpg")
-  image2.mv('./public/petimages/' + req.session.userID + timestamp + "(2).jpg")
-  image3.mv('./public/petimages/' + req.session.userID + timestamp + "(3).jpg")
-
-  const data = req.body
-  data.userID = req.session.userID
-  data.image1 = `${req.session.userID}${timestamp}(1).jpg`
-  data.image2 = `${req.session.userID}${timestamp}(2).jpg`
-  data.image3 = `${req.session.userID}${timestamp}(3).jpg`
-  data.dataId = `${req.session.userID}${timestamp}`
-
-  try {
-    const result = await fetch(`https://node-js-restapi-pet.onrender.com/upload/${req.session.userID}${timestamp}/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }, { signal: controller.signal })
-  } catch (error) {
-    console.log(error)
-  }
-
-  const timeoutId = setTimeout(() => {
-    // Abort the Fetch request
-    controller.abort();
-  }, 3000);
-
-  clearTimeout(timeoutId)
-
-  res.redirect(`list?category=${req.body.category}`)
-
-})
-
-
-router.get('/details',async(req,res)=>{
+router.get('/details', async (req, res) => {
   const dataId = req.query.dataId
   const allData = await (await fetch("https://node-js-restapi-pet.onrender.com/",)).json()
   console.log(req.query.dataId)
- 
+
   const filterdData = allData.filter((obj => { return obj.dataId == dataId }))
   console.log(filterdData[0])
-  
-  
-  res.render('details',{data:filterdData[0]})
+
+
+  res.render('details', { data: allData, name: req.session.name })
 
 })
 
 
 
 module.exports = router;
+
+//search
+//listing page at home
+
 
 

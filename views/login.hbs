@@ -231,7 +231,7 @@
             }
 
 
-            const result = await (await fetch(base + '/signup', {
+            const result = await (await fetch(base + '/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -277,7 +277,7 @@
                 return
             }
 
-            const result = await (await fetch(base + '/signin', {
+            const result = await (await fetch(base + '/user/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

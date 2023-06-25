@@ -42,9 +42,10 @@ app.use(cookieParser());
 app.use(session({secret:'key',cookie:{maxAge:600000,},resave:false,saveUninitialized:true}))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 require('./schemas/loginschema') 
+require('./schemas/petSchema')
 
 const uri = 'mongodb+srv://petshop:jaaah123@cluster0.ompobnq.mongodb.net/petshop?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 3000
@@ -65,6 +66,7 @@ db.once('open', function () {
 })
 
 const loginModel = mongoose.model('logininfo')
+const petModel = mongoose.model('petdetails')
 
 
 module.exports = app;  
