@@ -107,9 +107,9 @@
 			align-items: center;
 			justify-content: space-around;
 			height: 41px;
-			background: #1e80f7;
+			background: rgb(66 207 66 / 50%);
 			border-radius: 5px;
-			padding-top: 40px;
+
 		}
 
 		.categories a {
@@ -120,6 +120,7 @@
 			align-items: center;
 			justify-content: center;
 			border-radius: 50px;
+			filter: opacity(0.5);
 		}
 
 		.categories p {
@@ -157,8 +158,6 @@
 			font-size: 18px;
 			margin-top: 2px;
 		}
-
-	
 	</style>
 </head>
 
@@ -170,32 +169,33 @@
 		data-stellar-background-ratio="0.5">
 		{{!-- <div class="overlay"></div> --}}
 		<div class="container">
+			<h3 style="font-weight: 500;color: #603d25;">Filter</h3>
 			<div class="categories">
-				<a href="/list?category=cat" {{#if cat}} style="border: 4px solid black;padding: 21px;" {{/if}}>
+				<a href="/list?category=cat" {{#if cat}} style="border: 4px solid black;padding: 21px;filter: opacity(1);" {{/if}}>
 					<div>
 						<p>Cats</p>
 					</div>
 				</a>
 
-				<a href="/list?category=dog" {{#if dog}} style="border: 4px solid black;padding: 21px;" {{/if}}>
+				<a href="/list?category=dog" {{#if dog}} style="border: 4px solid black;padding: 21px;    filter: opacity(1);" {{/if}}>
 					<div>
 						<p>Dog</p>
 					</div>
 				</a>
 
-				<a href="/list?category=cow" {{#if cow}} style="border: 4px solid black;padding: 21px;" {{/if}}>
+				<a href="/list?category=cow" {{#if cow}} style="border: 4px solid black;padding: 21px;    filter: opacity(1);" {{/if}}>
 					<div>
 						<p>Cow</p>
 					</div>
 				</a>
 
-				<a href="/list?category=goat" {{#if goat}} style="border: 4px solid black;padding: 21px;" {{/if}}>
+				<a href="/list?category=goat" {{#if goat}} style="border: 4px solid black;padding: 21px;    filter: opacity(1);" {{/if}}>
 					<div>
 						<p>Goat</p>
 					</div>
 				</a>
 
-				<a href="/list?category=birds" {{#if birds}} style="border: 4px solid black;padding: 21px;" {{/if}}>
+				<a href="/list?category=birds" {{#if birds}} style="border: 4px solid black;padding: 21px;    filter: opacity(1);" {{/if}}>
 					<div>
 						<p>Birds</p>
 					</div>
@@ -213,7 +213,7 @@
 
 		<section style="background-color: #eee;">
 			<div class="text-center container py-5">
-				<h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
+
 
 				<div class="cardcontainer">
 					{{#each data}}

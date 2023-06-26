@@ -56,14 +56,14 @@
                     {{!-- <li class="nav-item {{#if category}} active {{/if}}"><a href="services.html" class="nav-link">Categories</a></li> --}}
                     <li class="nav-item {{#if gallery}} active {{/if}}"><a href="/gallery" class="nav-link">Gallery</a></li>
                     <li class="nav-item {{#if sell}} active {{/if}}"><a href="/upload" class="nav-link">Sell</a></li>
-                    <li class="nav-item {{#if list}} active {{/if}}"><a href="/list" class="nav-link">Categories</a></li>
+                    <li class="nav-item {{#if list}} active {{/if}}"><a href="/list" class="nav-link">Filter</a></li>
                     {{!-- <li class="nav-item {{#if pricing}} active {{/if}}"><a href="pricing.html" class="nav-link">Pricing</a></li> --}}
                     <li class="nav-item {{#if contact}} active {{/if}}" ><a href="/contact" class="nav-link">Contact</a></li>
                     {{#unless name}}
                     <li class="nav-item {{#if signin}} active {{/if}}"><a href="/signin" class="nav-link">Sign In</a></li>
                     {{/unless}}
                     {{#if name}}
-                    <li class="nav-item"><a href="/" class="nav-link">{{name}}</a></li>
+                    <li class="nav-item {{#if profile}} active {{/if}}"><a href="/profile" class="nav-link">{{name}}</a></li>
                     {{/if}}
                     {{#if name}}
                     <li class="nav-item"><a href="/user/logout" class="nav-link">logout</a></li>

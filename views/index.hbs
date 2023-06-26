@@ -22,6 +22,9 @@
 
 	<link rel="stylesheet" href="stylesheets/flaticon.css">
 	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<style>
 		.search {
 			margin-bottom: auto;
@@ -29,6 +32,18 @@
 			height: 70px;
 			background-color: #fff;
 			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+		}
+
+		form {
+			display: flex;
+		}
+
+		button {
+			border: none;
 		}
 
 		.search-input {
@@ -76,34 +91,208 @@
 		a:link {
 			text-decoration: none;
 		}
+
+		.searchresults {
+			display: flex;
+			width: 80%;
+			margin: auto;
+			margin-top: 30px;
+			align-items: center;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			row-gap: 30px;
+			column-gap: 60px;
+		}
+
+		.noresults {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.noresults p {
+			font-size: large;
+			padding: .7
+		}
+
+		.petimage {
+			width: 273px;
+			height: 269px;
+			object-fit: contain;
+		}
+
+		.details {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			background: aliceblue;
+		}
+
+		.name {
+			font-size: 28px;
+			margin: 0;
+			font-weight: 500;
+			color: #846a6a;
+		}
+
+		.category {
+			margin: 0;
+			font-size: 17px;
+		}
+
+		.price {
+			font-size: 21px;
+			margin-top: 15px;
+			font-weight: bold;
+		}
+
+		.ratingcontainer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			column-gap: 10px;
+			margin-bottom: 30px;
+		}
+
+		.rating {
+			margin: 0;
+		}
+
+		.zerorating {
+			margin: 0;
+			white-space: nowrap;
+		}
+
+		.card a {
+			box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		}
+
+		.card {
+			background: aliceblue;
+			padding-top: 20px;
+		}
+
+		.bestimg {
+			width: 209px;
+			height: 149px;
+			object-fit: contain;
+			margin-right: 10px;
+		}
+
+		.best-a {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.bestrating {
+			font-size: 20px;
+			font-weight: bold;
+			margin: 0;
+		}
 	</style>
 </head>
 
 <body>
-	
+
 	{{> header home=true}}
 	<!-- END nav -->
 	<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
-		{{!-- <div class="container">
+		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
 				data-scrollax-parent="true">
 				<div class="col-md-11 ftco-animate text-center">
 					<h1 class="mb-4">Highest Quality Pets At Affordable Rates</h1>
 					<div class="d-flex justify-content-center h-100">
 						<div class="search">
-							<input type="text" class="search-input" placeholder="search..." name="">
-							<a href="#" class="search-icon">
-								<i class="fa fa-search"></i>
-							</a>
+							<form action="/search" method="post">
+								<input type="text" class="search-input" required name="search" placeholder="search..."
+									name="">
+								<button type="submit"><span  class="search-icon">
+										<i class="fa fa-search"></i>
+									</span></button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div> --}}
+		</div>
 	</div>
 
+
+	{{#if searched}}
+	<div class="searchresults">
+
+		{{#each data}}
+		<div class="card">
+			<a href="details?dataID={{this._id}}">
+				<div class="image">
+					<img class="petimage" src="/petimages/{{this.image1}}" alt="">
+				</div>
+				<div class="details">
+					<p class="name">{{this.name}}</p>
+					<p class="category">Category : <span style="font-weight: bold;">{{this.category}}</span></p>
+					<p class="price">₹ {{this.price}}</p>
+
+					<div class="ratingcontainer">
+						<img src="/images/star.png" alt="">
+						{{#if this.rating}}
+						<p class="rating">{{this.rating}}</p>
+						{{else}}
+						<p class="zerorating">&nbsp;&nbsp; 0 Ratings</p>
+						{{/if}}
+					</div>
+				</div>
+			</a>
+		</div>
+		{{/each}}
+
+
+
+	</div>
+	{{/if}}
+
+	{{#if noresults}}
+	<div class="noresults">
+		<p>No matches 😔</p>
+	</div>
+	{{/if}}
+
+
+	<h2 style="text-align: center;margin-top: 60px;">Best sellers</h2>
+	<div class="searchresults" style="background: #eeeeee;padding: 2% 5%;width: 100%;">
+
+		{{#each bestsellers}}
+		<div class="card" style="padding-top: 0px;padding: 10px;">
+			<a href="details?dataID={{this._id}}" class="best-a">
+				<div class="image">
+					<img class="bestimg" src="/petimages/{{this.image1}}" alt="">
+				</div>
+				<div class="details">
+					<p class="name">{{this.name}}</p>
+
+
+					<div class="ratingcontainer">
+						<img src="/images/star.png" alt="">
+						{{#if this.rating}}
+						<p class="bestrating">{{this.rating}}</p>
+						{{else}}
+						<p class="zerorating">&nbsp;&nbsp; 0 Ratings</p>
+						{{/if}}
+					</div>
+				</div>
+			</a>
+		</div>
+		{{/each}}
+
+
+
+	</div>
+
+	{{!--
 	<section class="ftco-section bg-light ftco-no-pt ftco-intro">
 		<div class="container">
 			<div class="row">
@@ -151,7 +340,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb">
 		<div class="container">

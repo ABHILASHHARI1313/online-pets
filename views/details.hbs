@@ -39,6 +39,10 @@
             align-items: center;
             justify-content: space-between;
         }
+
+        .blur {
+            filter: blur(4px);
+        }
     </style>
 </head>
 
@@ -77,22 +81,43 @@
         </div>
         <hr>
         <br>
+        {{#unless name}}
+        <p><a href="/signin" style="font-weight: bold;">Signin</a> to show contact details</p>
+        {{/unless}}
+        {{#if name}}
         <div class="contact">
             <h4>Contact</h4>
             <div class="address">
-                <p><b>Address :</b> {{data.address}}</p>
+                <p id="address"><b>Address :</b> {{data.address}}</p>
             </div>
             <div>
-                <p><b>phone :</b>{{data.phone}}</p>
+                <p id="contact"><b>phone :</b>{{data.phone}}</p>
             </div>
+            <a href="tel:{{data.phone}}">
+                <button style="    border: none;
+    background: #000000e8;
+    color: white;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 9px;
+}">Call NOW</button>
+            </a>
         </div>
         <br>
         <br>
+        {{/if}}
+
+        {{#if name}}
+
         {{#if rated}}
         <p style="font-weight: normal;">Thanks for your feedback 😊</p>
         {{else}}
         <p style="font-weight: bold;">Your opinion matters 😊</p>
         {{/if}}
+
+        {{/if}}
+
+        {{#if name}}
 
         <div class="ratings">
             <span class="fa fa-star" id="star1"></span>
@@ -102,8 +127,11 @@
             <span class="fa fa-star" id="star5"></span>
         </div>
 
+        {{/if}}
+
         <br>
         <br>
+
 
     </div>
     {{!-- {{/each}} --}}
@@ -191,6 +219,9 @@
 </body>
 
 <script>
+
+
+
     const star1 = document.getElementById('star1')
     const star2 = document.getElementById('star2')
     const star3 = document.getElementById('star3')
